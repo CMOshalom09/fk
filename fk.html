@@ -1,0 +1,729 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>ФК Медиа</title>
+<meta name="description" content="ФК Медиа — сетка телеграм-каналов об экономике и финансах. С 2017 года.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;500&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: тёмная графитовая сцена, световые потоки как «график роста», длинный вертикальный рассказ с волосяными линиями вместо карточек */
+:root{
+  --bg:#0c1110;
+  --bg-2:#111817;
+  --line:#22302d;
+  --line-2:#2e3f3b;
+  --fg:#e9efed;
+  --muted:#8b9a96;
+  --dim:#5d6b67;
+  --emerald:#46d391;
+  --teal:#2ec4c0;
+  --blue:#3d7cf2;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:clamp(16px,5vw,72px);
+  --max:1320px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--f-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--emerald);color:var(--bg)}
+:focus-visible{outline:1px solid var(--emerald);outline-offset:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.grad{background:linear-gradient(90deg,var(--emerald),var(--teal) 55%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* grain */
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:60;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:grain 1.2s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}}
+
+/* progress */
+.progress{position:fixed;top:0;left:0;height:1px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--emerald),var(--teal),var(--blue));z-index:70}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--f-display);font-weight:400;font-size:15px;letter-spacing:.04em}
+.logo .mark{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line-2);border-radius:4px;font-weight:500;font-size:14px;position:relative;overflow:hidden}
+.logo .mark::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--emerald),var(--blue))}
+.nav ul{display:flex;gap:32px;list-style:none;margin:0;padding:0}
+.nav ul a{font-size:14px;color:var(--muted);transition:color .25s}
+.nav ul a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border:1px solid var(--line-2);border-radius:4px;font:500 14px var(--f-body);color:var(--fg);background:transparent;cursor:pointer;transition:border-color .3s,background .3s,color .3s;position:relative;will-change:transform}
+.btn:hover{border-color:var(--emerald);background:color-mix(in oklab,var(--emerald) 10%,transparent)}
+.btn.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn.primary:hover{background:var(--emerald);border-color:var(--emerald)}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+@media (max-width:900px){.nav ul{display:none}}
+@media (max-width:480px){.nav .btn{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:min(100svh,980px);display:flex;flex-direction:column;justify-content:flex-end;padding-block:120px 0;overflow:hidden;isolation:isolate}
+#flow{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in oklab,var(--bg) 70%,transparent) 38%,transparent 70%),linear-gradient(0deg,var(--bg) 0%,transparent 30%)}
+.hero .wrap{width:100%}
+.hero .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+.hero .eyebrow i{display:block;width:40px;height:1px;background:var(--emerald)}
+.h1{font-family:var(--f-display);font-weight:200;font-size:clamp(44px,8.6vw,132px);line-height:.98;letter-spacing:-.03em;margin:0;text-wrap:balance}
+.h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.h1 .ln>span{display:inline-block;animation:rise 1.1s var(--ease) both}
+.h1 .ln:nth-child(2)>span{animation-delay:.12s}
+.h1 .ln:nth-child(3)>span{animation-delay:.24s}
+.h1 b{font-weight:400}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.hero .lead{max-width:540px;margin:36px 0 0;font-size:clamp(16px,1.4vw,19px);color:var(--muted);animation:fade 1.2s .5s var(--ease) both}
+.hero .lead strong{color:var(--fg);font-weight:500}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;animation:fade 1.2s .65s var(--ease) both}
+@keyframes fade{from{opacity:.001;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.h1 .ln>span,.hero .lead,.hero .cta{animation:none}}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(56px,9vh,110px);border-top:1px solid var(--line)}
+.facts>div{padding:24px 24px 32px 0;border-right:1px solid var(--line);min-width:0}
+.facts>div+div{padding-left:24px}
+.facts>div:last-child{border-right:0}
+.num{font-family:var(--f-display);font-weight:300;font-size:clamp(30px,3.6vw,52px);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.num small{font-size:.42em;letter-spacing:0;margin-left:.2em;color:var(--muted);font-weight:300}
+.facts p{margin:12px 0 0;font-size:13px;line-height:1.45;color:var(--muted);max-width:22ch}
+@media (max-width:760px){.hero::before{background:linear-gradient(90deg,var(--bg) 0%,color-mix(in oklab,var(--bg) 75%,transparent) 70%,color-mix(in oklab,var(--bg) 40%,transparent) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 30%)}.facts{grid-template-columns:1fr 1fr}.facts>div:nth-child(2){border-right:0}.facts>div:nth-child(3){padding-left:0}.facts>div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding-block:22px;background:var(--bg-2)}
+.marquee .track{display:flex;width:max-content;animation:mq 60s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.marquee span{font-family:var(--f-display);font-weight:200;font-size:clamp(22px,2.6vw,36px);letter-spacing:-.01em;white-space:nowrap;padding-right:48px;display:flex;align-items:center;gap:48px;color:var(--muted)}
+.marquee span::after{content:"";width:8px;height:8px;border:1px solid var(--emerald);transform:rotate(45deg)}
+.marquee span:nth-child(3n+1){color:var(--fg)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;width:auto}}
+
+/* sections */
+section{position:relative}
+.sec{padding-block:clamp(96px,14vw,180px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px;margin-bottom:clamp(56px,7vw,96px)}
+.sec-head .mono{padding-top:14px;display:flex;gap:12px}
+.sec-head .mono em{font-style:normal;color:var(--emerald)}
+.h2{font-family:var(--f-display);font-weight:200;font-size:clamp(32px,4.6vw,68px);line-height:1.04;letter-spacing:-.03em;margin:0;text-wrap:balance}
+.h2 b{font-weight:400}
+.sec-head p{margin:28px 0 0;color:var(--muted);max-width:58ch;font-size:17px}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr;gap:16px}.sec-head .mono{padding-top:0}}
+
+/* scroll-driven reveal: elements are visible at rest; animation only where supported */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+    @keyframes rv{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+    .rv-line{animation:rvl linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+    @keyframes rvl{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  }
+}
+
+/* story */
+.story{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px}
+.story-rail{position:sticky;top:120px;align-self:start}
+.year{font-family:var(--f-display);font-weight:200;font-size:clamp(64px,7.4vw,118px);white-space:nowrap;line-height:.85;letter-spacing:-.05em;font-variant-numeric:tabular-nums;position:relative}
+.year .y{display:block;transition:opacity .5s,transform .6s var(--ease)}
+.year-cap{margin-top:24px;max-width:26ch;color:var(--muted);font-size:14px;min-height:3em;transition:opacity .4s}
+.rail-bar{margin-top:36px;height:1px;background:var(--line);position:relative}
+.rail-bar i{position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(.25);background:linear-gradient(90deg,var(--emerald),var(--blue));transition:transform .6s var(--ease)}
+.chapters{display:flex;flex-direction:column}
+.ch{padding-block:0 clamp(72px,10vw,140px);display:grid;gap:22px}
+.ch:last-child{padding-bottom:0}
+.ch .tag{display:flex;gap:16px;align-items:center}
+.ch .tag i{flex:1;height:1px;background:var(--line);transform-origin:0 50%}
+.ch h3{font-family:var(--f-display);font-weight:300;font-size:clamp(24px,2.8vw,40px);line-height:1.12;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.ch p{margin:0;font-size:clamp(17px,1.35vw,20px);line-height:1.62;color:#c4cecb;max-width:62ch}
+.ch p+p{color:var(--muted);font-size:17px}
+.quote{border-left:1px solid var(--emerald);padding:6px 0 6px 24px;font-family:var(--f-display);font-weight:200;font-size:clamp(20px,2vw,28px);line-height:1.3;letter-spacing:-.01em;max-width:30ch}
+@media (max-width:760px){.story{grid-template-columns:1fr}.story-rail{position:relative;top:0}.year{font-size:clamp(64px,20vw,96px)}}
+
+/* channels */
+.channels{border-top:1px solid var(--line)}
+.chan{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr) minmax(0,3fr);gap:40px;padding-block:clamp(40px,5vw,64px);border-bottom:1px solid var(--line);position:relative;isolation:isolate}
+.chan::before{content:"";position:absolute;inset:0 calc(var(--gut) * -1);z-index:-1;opacity:0;transition:opacity .5s;background:radial-gradient(600px 240px at var(--mx,50%) var(--my,50%),color-mix(in oklab,var(--emerald) 9%,transparent),transparent 70%)}
+.chan:hover::before{opacity:1}
+.chan .idx{display:flex;gap:12px;margin-bottom:22px}
+.chan h3{font-family:var(--f-display);font-weight:300;font-size:clamp(30px,4vw,58px);line-height:1;letter-spacing:-.03em;margin:0;transition:transform .6s var(--ease)}
+.chan:hover h3{transform:translateX(10px)}
+.chan .role{margin:18px 0 0;color:var(--muted);max-width:38ch}
+.chan ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;align-content:start}
+.chan li{display:flex;gap:12px;font-size:15px;color:#c4cecb}
+.chan li::before{content:"—";color:var(--dim)}
+.chan .meta{display:grid;gap:18px;align-content:start}
+.chan .meta .num{font-size:clamp(28px,3vw,44px)}
+.chan .meta p{margin:6px 0 0;font-size:13px;color:var(--muted)}
+.chan .link{font-family:var(--f-mono);font-size:13px;color:var(--fg);display:inline-flex;gap:8px;align-items:center;border-bottom:1px solid var(--line-2);padding-bottom:4px;width:max-content;max-width:100%;transition:border-color .3s,color .3s}
+.chan .link:hover{color:var(--emerald);border-color:var(--emerald)}
+.chan .badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--emerald);border:1px solid color-mix(in oklab,var(--emerald) 40%,transparent);border-radius:3px;padding:4px 8px;width:max-content}
+.chan .badge i{width:6px;height:6px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 0 var(--emerald);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--emerald) 60%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
+@media (max-width:980px){.chan{grid-template-columns:1fr 1fr}.chan>div:first-child{grid-column:1/-1}}
+@media (max-width:560px){.chan{grid-template-columns:1fr}}
+
+/* audience */
+.aud{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(40px,6vw,96px)}
+.who{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.who li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line);transition:padding .4s var(--ease)}
+.who li:hover{padding-left:12px}
+.who b{display:block;font-family:var(--f-display);font-weight:300;font-size:clamp(18px,1.7vw,24px);letter-spacing:-.01em}
+.who span{display:block;margin-top:6px;color:var(--muted);font-size:14px}
+.who em{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--dim)}
+.geo{margin-top:36px;display:flex;gap:24px;align-items:flex-start}
+.geo .pin{flex:none;width:44px;height:44px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;position:relative}
+.geo .pin::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--emerald);animation:pulse 2.2s infinite}
+.geo p{margin:0;color:var(--muted);max-width:44ch}
+.geo p b{color:var(--fg);font-weight:500}
+.metrics{display:grid;gap:0;border-top:1px solid var(--line)}
+.metric{display:grid;grid-template-columns:150px minmax(0,1fr);gap:28px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line)}
+.ring{width:150px;height:150px;position:relative}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:2}
+.ring .bgc{stroke:var(--line-2)}
+.ring .fgc{stroke:url(#rg);stroke-linecap:round;transition:stroke-dashoffset 1.8s var(--ease)}
+.ring .val{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:300;font-size:30px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.metric h4{margin:0;font:500 17px/1.35 var(--f-body)}
+.metric p{margin:8px 0 0;font-size:14px;color:var(--muted);max-width:42ch}
+.split{grid-column:1/-1;display:grid;gap:14px}
+.split .bar{display:flex;height:6px;gap:3px}
+.split .bar i{display:block;height:100%;border-radius:1px;transition:flex-grow 1.6s var(--ease)}
+.split .bar i:first-child{background:var(--emerald)}
+.split .bar i:last-child{background:var(--blue)}
+.split .lab{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:var(--muted)}
+.split .lab b{font-family:var(--f-display);font-weight:300;color:var(--fg);font-size:22px;margin-right:8px;font-variant-numeric:tabular-nums}
+.speed{grid-column:1/-1;display:grid;gap:16px}
+.speed .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;font-size:14px;color:var(--muted)}
+.speed .row b{font-family:var(--f-display);font-weight:300;color:var(--fg);font-size:22px;font-variant-numeric:tabular-nums}
+.speed .track{grid-column:1/-1;height:4px;background:var(--line);border-radius:1px;overflow:hidden}
+.speed .track i{display:block;height:100%;background:linear-gradient(90deg,var(--emerald),var(--teal),var(--blue));transform-origin:0 50%;transition:transform 1.6s var(--ease)}
+.src{margin-top:20px;font-size:12px;color:var(--dim)}
+@media (max-width:980px){.aud{grid-template-columns:1fr}}
+@media (max-width:480px){.metric{grid-template-columns:1fr}.ring{width:120px;height:120px}}
+
+/* voices */
+.voices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.voice{padding:clamp(28px,3vw,44px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:220px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;position:relative;overflow:hidden;transition:background .4s}
+.voice::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--emerald),var(--blue));transition:transform .6s var(--ease)}
+.voice:hover{background:var(--bg-2)}
+.voice:hover::after{transform:scaleX(1)}
+.voice h4{margin:0;font-family:var(--f-display);font-weight:300;font-size:clamp(20px,1.8vw,26px);line-height:1.15;letter-spacing:-.01em}
+.voice p{margin:0;color:var(--muted);font-size:15px}
+@media (max-width:980px){.voices{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.voices{grid-template-columns:1fr}.voice{min-height:0}}
+
+/* themes */
+.topics{display:flex;flex-wrap:wrap;gap:10px;margin-top:48px}
+.topics span{border:1px solid var(--line-2);border-radius:3px;padding:10px 14px;font-size:14px;color:#c4cecb;transition:border-color .3s,color .3s}
+.topics span:hover{border-color:var(--emerald);color:var(--fg)}
+.daily{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:72px;border-top:1px solid var(--line);padding-top:40px}
+.daily p{margin:12px 0 0;color:var(--muted);font-size:14px;max-width:28ch}
+@media (max-width:760px){.daily{grid-template-columns:1fr;gap:28px}}
+
+/* partners */
+.formats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.fmt{padding:36px 40px 40px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px}
+.fmt:nth-child(even){padding-left:40px;padding-right:0;border-left:1px solid var(--line)}
+.fmt .ic{width:44px;height:44px;border:1px solid var(--line-2);border-radius:4px;display:grid;place-items:center}
+.fmt .ic svg{width:20px;height:20px;stroke:var(--emerald);fill:none;stroke-width:1.3}
+.fmt h4{margin:0;font-family:var(--f-display);font-weight:300;font-size:22px;letter-spacing:-.01em}
+.fmt p{margin:10px 0 0;color:var(--muted);font-size:15px;max-width:44ch}
+@media (max-width:760px){.formats{grid-template-columns:1fr}.fmt,.fmt:nth-child(even){padding:28px 0;border-left:0}}
+.steps{margin-top:clamp(72px,9vw,120px);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:22px;height:1px;background:var(--line)}
+.step{position:relative;padding-right:20px}
+.step .dot{width:45px;height:45px;border-radius:50%;border:1px solid var(--line-2);background:var(--bg);display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;color:var(--emerald);position:relative;transition:border-color .3s,background .3s}
+.step:hover .dot{border-color:var(--emerald);background:var(--bg-2)}
+.step h5{margin:22px 0 0;font:500 16px/1.3 var(--f-body)}
+.step p{margin:8px 0 0;font-size:13px;color:var(--muted)}
+@media (max-width:860px){.steps{grid-template-columns:1fr;gap:28px}.steps::before{left:22px;right:auto;top:0;bottom:0;width:1px;height:auto}.step{display:grid;grid-template-columns:45px minmax(0,1fr);gap:0 20px}.step h5{margin-top:10px}.step p{grid-column:2}}
+
+/* platforms */
+.plat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.plat>div{padding:32px 24px 36px 0;border-right:1px solid var(--line);display:grid;gap:14px;align-content:start}
+.plat>div+div{padding-left:24px}
+.plat>div:last-child{border-right:0}
+.plat h4{margin:0;font-family:var(--f-display);font-weight:300;font-size:clamp(22px,2.2vw,32px);letter-spacing:-.02em}
+.plat p{margin:0;color:var(--muted);font-size:14px}
+.st{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:flex;gap:8px;align-items:center}
+.st i{width:6px;height:6px;border-radius:50%}
+.st.on{color:var(--emerald)}.st.on i{background:var(--emerald)}
+.st.next{color:var(--teal)}.st.next i{background:var(--teal)}
+.st.plan{color:var(--dim)}.st.plan i{border:1px solid var(--dim)}
+@media (max-width:860px){.plat{grid-template-columns:1fr 1fr}.plat>div:nth-child(2){border-right:0}.plat>div:nth-child(3){padding-left:0}.plat>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:420px){.plat{grid-template-columns:1fr}.plat>div,.plat>div+div{padding-left:0;border-right:0}.plat>div+div{border-top:1px solid var(--line)}}
+
+/* contact */
+.contact{padding-block:clamp(110px,16vw,220px) clamp(48px,6vw,80px);overflow:hidden;position:relative;isolation:isolate}
+#flow2{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.55}
+.contact::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--bg) 0%,transparent 40%,transparent 70%,var(--bg) 100%)}
+.big{font-family:var(--f-display);font-weight:200;font-size:clamp(48px,10vw,160px);line-height:.95;letter-spacing:-.045em;margin:0}
+.big b{font-weight:400}
+.contact-row{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;align-items:flex-end;margin-top:56px}
+.handle{display:grid;gap:14px}
+.handle .h{font-family:var(--f-mono);font-size:clamp(20px,2.6vw,34px);letter-spacing:-.01em;user-select:all;overflow-wrap:anywhere}
+.handle .acts{display:flex;gap:12px;flex-wrap:wrap}
+.foot{border-top:1px solid var(--line);margin-top:clamp(96px,12vw,160px);padding-top:28px;display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;font-size:13px;color:var(--dim)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--fg);color:var(--bg);font:500 14px var(--f-body);padding:12px 18px;border-radius:4px;transition:opacity .3s,transform .3s var(--ease);z-index:80}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="ФК Медиа"><span class="mark">ФК</span><span>ФК Медиа</span></a>
+    <nav aria-label="Разделы">
+      <ul>
+        <li><a href="#story">История</a></li>
+        <li><a href="#channels">Каналы</a></li>
+        <li><a href="#audience">Аудитория</a></li>
+        <li><a href="#partners">Партнёрам</a></li>
+      </ul>
+    </nav>
+    <a class="btn magnet" href="#contact">Связаться <span class="arr">→</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <canvas id="flow" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="eyebrow mono"><i></i>Медиагруппа · с 2017 года</div>
+      <h1 class="h1">
+        <span class="ln"><span>Деньги, рынки</span></span>
+        <span class="ln"><span>и правила игры.</span></span>
+        <span class="ln"><span><b class="grad">ФК Медиа</b></span></span>
+      </h1>
+      <p class="lead"><strong>Сетка телеграм-каналов об экономике и финансах.</strong> Одна редакция, отдельный канал под каждую аудиторию: от банкира и инвестора до человека, который хочет понять, что происходит с его деньгами.</p>
+      <div class="cta">
+        <a class="btn primary magnet" href="#channels">Наши каналы <span class="arr">→</span></a>
+        <a class="btn magnet" href="#partners">Размещение и спецпроекты</a>
+      </div>
+      <div class="facts">
+        <div><div class="num" data-count="9">9<small>лет</small></div><p>в эфире: первый пост вышел 24 сентября 2017 года</p></div>
+        <div><div class="num" data-count="3">3<small>канала</small></div><p>в сетке, общая редакция</p></div>
+        <div><div class="num" data-count="90" data-suffix="+">90+<small>тыс.</small></div><p>подписчиков у «Финансового Караульного»</p></div>
+        <div><div class="num" data-count="48133">48 133</div><p>публикации флагманского канала с 2017 года</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-label="Темы редакции">
+    <div class="track">
+      <span>Ключевая ставка</span><span>Крипторегулирование</span><span>Цифровой рубль</span><span>Платёжная инфраструктура</span><span>Надзор ЦБ</span><span>ЦФА</span><span>Курс рубля</span><span>Нефть</span><span>ВЭД и расчёты</span><span>Инфляция</span><span>Эквайринг</span><span>Частный инвестор</span>
+      <span aria-hidden="true">Ключевая ставка</span><span aria-hidden="true">Крипторегулирование</span><span aria-hidden="true">Цифровой рубль</span><span aria-hidden="true">Платёжная инфраструктура</span><span aria-hidden="true">Надзор ЦБ</span><span aria-hidden="true">ЦФА</span><span aria-hidden="true">Курс рубля</span><span aria-hidden="true">Нефть</span><span aria-hidden="true">ВЭД и расчёты</span><span aria-hidden="true">Инфляция</span><span aria-hidden="true">Эквайринг</span><span aria-hidden="true">Частный инвестор</span>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <section class="sec" id="story">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono"><em>01</em>История</div>
+        <div>
+          <h2 class="h2 rv">Девять лет пишем о деньгах <b>так, как о них говорят внутри отрасли</b></h2>
+        </div>
+      </div>
+
+      <div class="story">
+        <aside class="story-rail" aria-hidden="true">
+          <div class="year"><span class="y grad" id="yearNum">2017</span></div>
+          <div class="year-cap mono" id="yearCap">Первый пост</div>
+          <div class="rail-bar"><i id="railBar"></i></div>
+        </aside>
+
+        <div class="chapters">
+          <article class="ch" data-year="2017" data-cap="Первый пост">
+            <div class="tag mono">Сентябрь 2017 <i class="rv-line"></i></div>
+            <h3 class="rv">Telegram ещё мессенджер. Мы уже пишем в нём о финансах</h3>
+            <p class="rv">24 сентября 2017 года выходит первый пост «Финансового Караульного». Деловые новости тогда читают на сайтах и в агентских лентах, телеграм-каналов об экономике единицы. С самого начала канал говорит о деньгах прямо, с цифрами и без пресс-релизного языка.</p>
+          </article>
+
+          <article class="ch" data-year="2022" data-cap="Рынок перестраивается">
+            <div class="tag mono">Годы перемен <i class="rv-line"></i></div>
+            <h3 class="rv">Каждая перестройка финансовой системы проходит через нашу ленту</h3>
+            <p class="rv">Санкции, новые платёжные маршруты, скачки ставки, закон о криптовалютах, цифровой рубль. Когда правила меняются быстрее, чем их успевают объяснить, читателю нужен разбор, а не пересказ. Поэтому у нас остаются те, кто принимает решения: банкиры, инвесторы, собственники бизнеса, люди из регуляторного контура.</p>
+            <blockquote class="quote rv">Мы не сводка курсов. Мы объясняем, что изменилось и кого это касается.</blockquote>
+          </article>
+
+          <article class="ch" data-year="ФК" data-cap="Одна редакция, три канала">
+            <div class="tag mono">Сетка <i class="rv-line"></i></div>
+            <h3 class="rv">Одной ленты становится мало</h3>
+            <p class="rv">У банкира, частного инвестора и человека, который следит за курсом перед отпуском, разные вопросы. Так появляется сетка: рядом с «Финансовым Караульным» работают «Рубль не доллар» и «Экономистика». Редакция общая, стандарты общие, интонация у каждого канала своя.</p>
+          </article>
+
+          <article class="ch" data-year="2026" data-cap="ФК Медиа">
+            <div class="tag mono">2026 <i class="rv-line"></i></div>
+            <h3 class="rv">ФК Медиа: медиа нового поколения о деньгах</h3>
+            <p class="rv">Каналы объединяются под одним именем. Мы выходим за пределы Telegram: каналы в Max, видеоформат, на очереди Дзен. Задача прежняя: давать профессиональной аудитории собственную аналитику каждый день и быть местом, где о деньгах и правилах рынка говорят те, кто эти правила пишет и применяет.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section class="sec" id="channels" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono"><em>02</em>Каналы</div>
+        <div>
+          <h2 class="h2 rv">Три канала. <b>Одна редакция.</b></h2>
+          <p class="rv">Каждый канал отвечает своей аудитории на её вопросы. Вместе они закрывают весь путь: от решений регулятора до кошелька частного человека.</p>
+        </div>
+      </div>
+
+      <div class="channels">
+        <article class="chan">
+          <div>
+            <div class="idx mono">Флагман · с 24.09.2017</div>
+            <h3>Финансовый<br>Караульный</h3>
+            <p class="role">Ежедневная собственная аналитика для тех, кто работает с деньгами: банки и регулирование, платёжная инфраструктура, крипторынок, макро и рынки.</p>
+          </div>
+          <ul>
+            <li>Надзор, лицензии, требования ЦБ</li>
+            <li>Эквайринг, переводы, расчёты</li>
+            <li>ЦФА, криптозакон, налоги</li>
+            <li>Ставка, инфляция, курс</li>
+            <li>Колонки депутатов и экспертов</li>
+          </ul>
+          <div class="meta">
+            <span class="badge"><i></i>Реестр РКН · A+</span>
+            <div><div class="num" data-count="90" data-suffix="+">90+<small>тыс.</small></div><p>подписчиков</p></div>
+            <div><div class="num" data-count="19" data-dec="1">19,0<small>тыс.</small></div><p>просмотров каждого поста</p></div>
+            <a class="link" href="https://t.me/karaulny_accountant" target="_blank" rel="noopener">t.me/karaulny_accountant ↗</a>
+          </div>
+        </article>
+
+        <article class="chan">
+          <div>
+            <div class="idx mono">Валюта и сбережения</div>
+            <h3>Рубль<br>не доллар</h3>
+            <p class="role">Курс, валюта и личные деньги без паники и без рекламы. Что происходит с рублём, почему и что это значит для сбережений, поездок и покупок.</p>
+          </div>
+          <ul>
+            <li>Курс рубля и его причины</li>
+            <li>Валюта, вклады, сбережения</li>
+            <li>Переводы и расчёты за границей</li>
+            <li>Цены и инфляция в быту</li>
+          </ul>
+          <div class="meta">
+            <div><div class="num" style="font-size:clamp(22px,2.2vw,30px)">Частные деньги</div><p>для широкой аудитории, которая хочет понимать, а не гадать</p></div>
+          </div>
+        </article>
+
+        <article class="chan">
+          <div>
+            <div class="idx mono">Экономика простым языком</div>
+            <h3>Экономистика</h3>
+            <p class="role">Как устроена экономика и почему она ведёт себя так, а не иначе. Ставка, бюджет, рынки, решения государства, объяснённые на понятных примерах.</p>
+          </div>
+          <ul>
+            <li>Ключевая ставка и её последствия</li>
+            <li>Бюджет, налоги, госрешения</li>
+            <li>Рынки и сырьё</li>
+            <li>Разборы сложных тем без жаргона</li>
+          </ul>
+          <div class="meta">
+            <div><div class="num" style="font-size:clamp(22px,2.2vw,30px)">Объясняем</div><p>для тех, кто хочет разбираться в экономике без учебника</p></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="sec" id="audience" style="background:var(--bg-2);border-block:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono"><em>03</em>Аудитория</div>
+        <div>
+          <h2 class="h2 rv">Нас читают те, <b>кто принимает решения</b></h2>
+          <p class="rv">Профессиональная платёжеспособная аудитория. Решения о продуктах, партнёрствах и бюджетах принимаются внутри этой группы, а не после неё.</p>
+        </div>
+      </div>
+
+      <div class="aud">
+        <div>
+          <ul class="who">
+            <li class="rv"><div><b>Банкиры и финансисты</b><span>Розница, корпоративный блок, комплаенс, казначейство</span></div></li>
+            <li class="rv"><div><b>Инвесторы и предприниматели</b><span>Частный капитал, венчур, владельцы среднего бизнеса</span></div></li>
+            <li class="rv"><div><b>Руководители компаний</b><span>C-level и собственники, отвечающие за деньги и риски</span></div></li>
+            <li class="rv"><div><b>Госструктуры и регуляторный контур</b><span>Профильные ведомства, отраслевые ассоциации</span></div></li>
+            <li class="rv"><div><b>Отраслевые журналисты</b><span>Деловые СМИ, авторы профильных каналов</span></div></li>
+          </ul>
+          <div class="geo rv"><span class="pin" aria-hidden="true"></span><p><b>Москва и крупные города.</b> Ядро аудитории живёт там, где сосредоточены финансовые решения страны.</p></div>
+        </div>
+
+        <div>
+          <div class="metrics" id="metrics">
+            <div class="metric">
+              <div class="ring" aria-hidden="true">
+                <svg viewBox="0 0 150 150"><defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#46d391"/><stop offset=".6" stop-color="#2ec4c0"/><stop offset="1" stop-color="#3d7cf2"/></linearGradient></defs><circle class="bgc" cx="75" cy="75" r="70"/><circle class="fgc" id="ringFg" cx="75" cy="75" r="70" stroke-dasharray="439.8" stroke-dashoffset="111.7"/></svg>
+                <div class="val">74,6%</div>
+              </div>
+              <div><h4>Три четверти подписчиков держат уведомления включёнными</h4><p>Материал приходит пушем и попадает на экран сразу, а не догоняет читателя в общей ленте.</p></div>
+            </div>
+            <div class="metric">
+              <div class="speed">
+                <div class="row"><span>Охват поста, всего</span><b>19,0 тыс.</b><div class="track"><i style="transform:scaleX(1)"></i></div></div>
+                <div class="row"><span>За первые 48 часов</span><b>14,7 тыс.</b><div class="track"><i id="speedBar" style="transform:scaleX(.77)"></i></div></div>
+                <p style="margin:4px 0 0;font-size:14px;color:var(--muted)"><b style="color:var(--fg);font-weight:500">77% охвата</b> пост набирает в первые двое суток. Сообщение срабатывает сразу, а не собирает просмотры неделю.</p>
+              </div>
+            </div>
+            <div class="metric">
+              <div class="split">
+                <div class="bar" aria-hidden="true"><i id="sM" style="flex-grow:52.3"></i><i id="sW" style="flex-grow:47.7"></i></div>
+                <div class="lab"><span><b>52,3%</b>мужчины</span><span><b>47,7%</b>женщины</span></div>
+                <p style="margin:0;font-size:14px;color:var(--muted)">Паритет по полу. Для финансовой темы это норма: решения о деньгах принимают и те, и другие.</p>
+              </div>
+            </div>
+          </div>
+          <p class="src">«Финансовый Караульный», статистика Telegram и TGStat, 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICES -->
+  <section class="sec" id="voices">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono"><em>04</em>Голоса</div>
+        <div>
+          <h2 class="h2 rv">О правилах рынка у нас говорят те, <b>кто их пишет и применяет</b></h2>
+          <p class="rv">Кроме редакционных материалов в каналах выходят колонки и комментарии внешних экспертов.</p>
+        </div>
+      </div>
+      <div class="voices">
+        <div class="voice rv"><span class="mono">Законодатели</span><div><h4>Депутаты Госдумы</h4><p>Законодательная повестка из первых рук</p></div></div>
+        <div class="voice rv"><span class="mono">Отрасль</span><div><h4>Руководители отраслевых ассоциаций</h4><p>Позиция отрасли и её участников</p></div></div>
+        <div class="voice rv"><span class="mono">Бизнес</span><div><h4>Представители крупного бизнеса</h4><p>Практика рынка изнутри</p></div></div>
+        <div class="voice rv"><span class="mono">Макро</span><div><h4>Экономисты</h4><p>Макроэкономика, рынки, прогнозы</p></div></div>
+        <div class="voice rv"><span class="mono">Крипта</span><div><h4>Эксперты по криптовалютам</h4><p>Рынок, регулирование, правоприменение</p></div></div>
+        <div class="voice rv"><span class="mono">Расчёты</span><div><h4>Эксперты по ВЭД и платёжной инфраструктуре</h4><p>Расчёты, переводы, внешняя торговля</p></div></div>
+      </div>
+
+      <div class="daily">
+        <div class="rv"><div class="num" data-count="6" data-range="8">6–8</div><p>материалов в день на плановом режиме</p></div>
+        <div class="rv"><div class="num">Каждый день</div><p>собственная аналитика, а не перепечатка лент</p></div>
+        <div class="rv"><div class="num">С 2017</div><p>без перерывов, в одной интонации</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="sec" id="partners" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono"><em>05</em>Партнёрам</div>
+        <div>
+          <h2 class="h2 rv">Бренд партнёра становится <b>частью редакционной повестки</b></h2>
+          <p class="rv">От отдельного размещения до регулярной рубрики. Материал партнёра выходит в той же ленте, где о деньгах высказываются законодатели, ассоциации и крупный бизнес.</p>
+        </div>
+      </div>
+
+      <div class="formats">
+        <div class="fmt rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span><div><h4>Пост и репост</h4><p>Размещение в ленте канала. Канал в реестре РКН, материал согласуется до выхода, срок в ленте без удаления.</p></div></div>
+        <div class="fmt rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 6v12h16V6"/><path d="M8 10h8v4H8z"/></svg></span><div><h4>Партнёрская рубрика</h4><p>Регулярная тематическая рубрика под брендом партнёра: фирменная плашка и подпись «Партнёр рубрики».</p></div></div>
+        <div class="fmt rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 19V5h9l5 5v9z"/><path d="M14 5v5h5"/></svg></span><div><h4>Экспертная колонка</h4><p>Регулярные материалы аналитиков и спикеров партнёра в канале.</p></div></div>
+        <div class="fmt rv"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="16" cy="13" r="3"/><path d="M4 19c1-3 3-4 5-4M12 19c1-2 2.5-3 4-3s3 1 4 3"/></svg></span><div><h4>Интервью</h4><p>Спецвыпуски с первыми лицами и ключевыми спикерами партнёра.</p></div></div>
+        <div class="fmt rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg></span><div><h4>Продуктовые практикумы</h4><p>Сценарии работы в продукте на реальных задачах читателя, в формате редакционного разбора.</p></div></div>
+        <div class="fmt rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 15l4-4 3 3 5-6"/></svg></span><div><h4>Отчёт по выпускам</h4><p>Охват, вовлечённость и переходы по каждому материалу.</p></div></div>
+      </div>
+
+      <div class="steps">
+        <div class="step rv"><span class="dot">1</span><h5>Бриф</h5><p>Задача, аудитория, сроки</p></div>
+        <div class="step rv"><span class="dot">2</span><h5>Концепция и медиаплан</h5><p>Формат, частота, каналы сетки</p></div>
+        <div class="step rv"><span class="dot">3</span><h5>Плашка и согласование</h5><p>Визуал рубрики, тексты до выхода</p></div>
+        <div class="step rv"><span class="dot">4</span><h5>Выход по графику</h5><p>Публикации в плановом режиме</p></div>
+        <div class="step rv"><span class="dot">5</span><h5>Отчёт</h5><p>Цифры по каждому выпуску</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono"><em>06</em>Площадки</div>
+        <div><h2 class="h2 rv">Там, где читают <b>о деньгах</b></h2></div>
+      </div>
+      <div class="plat">
+        <div class="rv"><span class="st on"><i></i>Работает</span><h4>Telegram</h4><p>Основа сетки: три канала, ежедневный выпуск</p></div>
+        <div class="rv"><span class="st on"><i></i>Работает</span><h4>Max</h4><p>Смежные каналы в мессенджере Max</p></div>
+        <div class="rv"><span class="st next"><i></i>Запуск</span><h4>Видео</h4><p>Разборы и интервью в видеоформате</p></div>
+        <div class="rv"><span class="st plan"><i></i>В планах</span><h4>Дзен</h4><p>Длинные форматы для широкой аудитории</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <canvas id="flow2" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="mono" style="margin-bottom:32px;display:flex;gap:12px"><em style="font-style:normal;color:var(--emerald)">07</em>Контакты</div>
+      <h2 class="big">Обсудим<br><b class="grad">размещение?</b></h2>
+      <div class="contact-row">
+        <div class="handle">
+          <span class="mono">Размещение и спецпроекты</span>
+          <span class="h" id="handle">@Finkaraulny_bot</span>
+          <div class="acts">
+            <a class="btn primary magnet" href="https://t.me/Finkaraulny_bot" target="_blank" rel="noopener">Написать в Telegram <span class="arr">→</span></a>
+            <button class="btn magnet" id="copy" type="button">Скопировать</button>
+          </div>
+        </div>
+        <p style="margin:0;max-width:36ch;color:var(--muted)">Медиакит со статистикой и условиями пришлём в ответ на запрос. Условия спецпроектов обсуждаются индивидуально.</p>
+      </div>
+      <footer class="foot">
+        <span>© ФК Медиа, 2017–2026</span>
+        <span>Финансовый Караульный · Рубль не доллар · Экономистика</span>
+        <a href="#top">Наверх ↑</a>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(()=>{
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- light flow canvas ---------- */
+function Flow(canvas, opts){
+  const ctx = canvas.getContext('2d');
+  let W=0,H=0,dpr=1,t=0,raf=0,visible=true;
+  const mouse={x:-9999,y:-9999,tx:-9999,ty:-9999};
+  const N = opts.lines;
+  const lines = Array.from({length:N},(_,i)=>({
+    off:(i/N-.5), ph:Math.random()*Math.PI*2, sp:.15+Math.random()*.35,
+    amp:12+Math.random()*38, fr:1.2+Math.random()*2.2,
+    w:Math.random()<.12?1.6:.6+Math.random()*.6, a:Math.random()<.15?.75:.12+Math.random()*.25
+  }));
+  const dots = Array.from({length:opts.dots},()=>({l:Math.floor(Math.random()*N),p:Math.random(),v:.0006+Math.random()*.0016}));
+  function size(){
+    const r=canvas.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2);
+    W=r.width; H=r.height; canvas.width=W*dpr; canvas.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function yAt(L,u){ // u: 0..1 along x
+    const base = H*(opts.y0 - opts.rise*Math.pow(u,1.7)) + L.off*H*opts.spread*(1-u*.55);
+    let y = base + Math.sin(u*L.fr*Math.PI + t*L.sp + L.ph)*L.amp*(.4+u) + Math.sin(u*7+t*.6+L.ph)*4;
+    const x=u*W, dx=x-mouse.x, dy=y-mouse.y, d2=dx*dx+dy*dy;
+    if(d2<40000){ y += (dy/Math.sqrt(d2+1))*(1-d2/40000)*40; }
+    return y;
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    mouse.x+=(mouse.tx-mouse.x)*.08; mouse.y+=(mouse.ty-mouse.y)*.08;
+    const g=ctx.createLinearGradient(W*opts.x0,H,W,0);
+    g.addColorStop(0,'rgba(70,211,145,1)'); g.addColorStop(.55,'rgba(46,196,192,1)'); g.addColorStop(1,'rgba(61,124,242,1)');
+    ctx.globalCompositeOperation='lighter'; ctx.strokeStyle=g;
+    const steps=Math.max(60,Math.floor(W/14));
+    for(const L of lines){
+      ctx.globalAlpha=L.a; ctx.lineWidth=L.w; ctx.beginPath();
+      for(let s=0;s<=steps;s++){ const u=opts.x0+(1.05-opts.x0)*s/steps; const x=u*W, y=yAt(L,u); s?ctx.lineTo(x,y):ctx.moveTo(x,y); }
+      ctx.stroke();
+    }
+    for(const d of dots){
+      d.p+=d.v; if(d.p>1){d.p=0;d.l=Math.floor(Math.random()*N);}
+      const u=opts.x0+(1.05-opts.x0)*d.p, x=u*W, y=yAt(lines[d.l],u);
+      const r=ctx.createRadialGradient(x,y,0,x,y,10); r.addColorStop(0,'rgba(220,255,240,.9)'); r.addColorStop(1,'rgba(70,211,145,0)');
+      ctx.globalAlpha=Math.sin(d.p*Math.PI); ctx.fillStyle=r; ctx.beginPath(); ctx.arc(x,y,10,0,7); ctx.fill();
+    }
+    ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
+  }
+  function loop(){ t+=.012; draw(); raf = visible ? requestAnimationFrame(loop) : 0; }
+  size(); addEventListener('resize',size);
+  canvas.parentElement.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect(); mouse.tx=e.clientX-r.left; mouse.ty=e.clientY-r.top;});
+  canvas.parentElement.addEventListener('pointerleave',()=>{mouse.tx=mouse.ty=-9999});
+  if(reduce){ t=2; mouse.x=mouse.tx; draw(); return; }
+  new IntersectionObserver(([en])=>{ visible=en.isIntersecting; if(visible && !raf) raf=requestAnimationFrame(loop); }).observe(canvas);
+}
+Flow(document.getElementById('flow'),{lines:46,dots:14,y0:.98,rise:.82,spread:.42,x0:.18});
+Flow(document.getElementById('flow2'),{lines:30,dots:8,y0:.9,rise:.55,spread:.5,x0:0});
+
+/* ---------- nav + progress ---------- */
+const nav=document.getElementById('nav'), prog=document.getElementById('progress');
+function onScroll(){
+  nav.classList.toggle('solid', scrollY>40);
+  const h=document.documentElement.scrollHeight-innerHeight; prog.style.transform=`scaleX(${h>0?scrollY/h:0})`;
+}
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+/* ---------- counters (final values stay in HTML at rest) ---------- */
+const fmt=(n,dec)=>dec?n.toFixed(dec).replace('.',','):Math.round(n).toLocaleString('ru-RU').replace(/ /g,' ');
+if(!reduce){
+  const io=new IntersectionObserver(ents=>ents.forEach(en=>{
+    if(!en.isIntersecting) return; io.unobserve(en.target);
+    const el=en.target, to=+el.dataset.count, dec=+(el.dataset.dec||0), suf=el.dataset.suffix||'', rng=el.dataset.range;
+    const small=el.querySelector('small'); const tail=small?small.outerHTML:'';
+    const t0=performance.now(), dur=1600;
+    (function step(now){
+      const p=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-p,4);
+      const v=fmt(to*e,dec)+suf+(rng?'–'+Math.round(+rng*e):'');
+      el.innerHTML=v+tail;
+      if(p<1) requestAnimationFrame(step);
+    })(t0);
+  }),{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el=>{ const r=el.getBoundingClientRect(); if(r.top>innerHeight) io.observe(el); else io.observe(el); });
+}
+
+/* ---------- audience charts animate when seen ---------- */
+if(!reduce){
+  const ring=document.getElementById('ringFg'), sb=document.getElementById('speedBar'), sM=document.getElementById('sM'), sW=document.getElementById('sW');
+  const m=document.getElementById('metrics');
+  if(m.getBoundingClientRect().top>innerHeight){
+    ring.style.transition='none'; ring.style.strokeDashoffset='439.8';
+    sb.style.transition='none'; sb.style.transform='scaleX(0)';
+    sM.style.flexGrow=50; sW.style.flexGrow=50;
+    requestAnimationFrame(()=>{ring.style.transition='';sb.style.transition='';});
+    new IntersectionObserver(([en],o)=>{ if(!en.isIntersecting) return; o.disconnect();
+      ring.style.strokeDashoffset='111.7'; sb.style.transform='scaleX(.77)'; sM.style.flexGrow=52.3; sW.style.flexGrow=47.7;
+    },{threshold:.35}).observe(m);
+  }
+}
+
+/* ---------- story rail ---------- */
+const yearNum=document.getElementById('yearNum'), yearCap=document.getElementById('yearCap'), bar=document.getElementById('railBar');
+const chs=[...document.querySelectorAll('.ch')];
+let cur=0;
+function setCh(i){
+  if(i===cur) return; cur=i; const c=chs[i];
+  yearNum.style.opacity=0; yearNum.style.transform='translateY(-20px)';
+  setTimeout(()=>{ yearNum.textContent=c.dataset.year; yearCap.textContent=c.dataset.cap; yearNum.style.transform='translateY(20px)';
+    requestAnimationFrame(()=>{ yearNum.style.opacity=1; yearNum.style.transform='none'; }); }, reduce?0:220);
+  bar.style.transform=`scaleX(${(i+1)/chs.length})`;
+}
+const sio=new IntersectionObserver(ents=>ents.forEach(en=>{ if(en.isIntersecting) setCh(chs.indexOf(en.target)); }),{rootMargin:'-45% 0px -45% 0px'});
+chs.forEach(c=>sio.observe(c));
+
+/* ---------- spotlight on channel rows ---------- */
+document.querySelectorAll('.chan').forEach(el=>el.addEventListener('pointermove',e=>{
+  const r=el.getBoundingClientRect(); el.style.setProperty('--mx',(e.clientX-r.left)+'px'); el.style.setProperty('--my',(e.clientY-r.top)+'px');
+}));
+
+/* ---------- magnetic buttons ---------- */
+if(!reduce && matchMedia('(pointer:fine)').matches){
+  document.querySelectorAll('.magnet').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect(); b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});
+    b.addEventListener('pointerleave',()=>{b.style.transition='transform .5s cubic-bezier(.2,.7,.1,1),border-color .3s,background .3s,color .3s';b.style.transform='';setTimeout(()=>b.style.transition='',500);});
+  });
+}
+
+/* ---------- copy handle ---------- */
+const toast=document.getElementById('toast');
+function say(t){ toast.textContent=t; toast.classList.add('show'); clearTimeout(say.t); say.t=setTimeout(()=>toast.classList.remove('show'),1800); }
+document.getElementById('copy').addEventListener('click',()=>{
+  const txt='@Finkaraulny_bot';
+  const fallback=()=>{ const r=document.createRange(); r.selectNodeContents(document.getElementById('handle')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); say('Выделено, нажмите Ctrl+C'); };
+  try{ navigator.clipboard.writeText(txt).then(()=>say('Скопировано: '+txt),fallback); }catch(e){ fallback(); }
+});
+})();
+</script>
+
+</body></html>
